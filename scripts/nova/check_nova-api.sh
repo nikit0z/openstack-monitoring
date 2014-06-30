@@ -56,7 +56,7 @@ do
             export ENDPOINT_URL=$OPTARG
             ;;
         T)
-            export OS_PROJECT=$OPTARG
+            export OS_PROJECT_NAME=$OPTARG
             ;;
         U)
             export OS_USERNAME=$OPTARG

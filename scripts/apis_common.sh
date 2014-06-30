@@ -7,7 +7,7 @@ get_catalog(){
           "project": {
             "name": "'${OS_PROJECT_NAME}'",
             "domain": {
-              "name": "'${OS_DOMAIN_NAME}'"
+              "name": "Default"
             }
           }
         },
@@ -18,7 +18,7 @@ get_catalog(){
           "password": {
             "user": {
               "domain": {
-                "name": "'Default'"
+                "name": "Default"
               },
               "name": "'${OS_USERNAME}'",
               "password": "'${OS_PASSWORD}'"
