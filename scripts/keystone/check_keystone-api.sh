@@ -23,6 +23,8 @@
 #
 set -e
 
+. ../$(readlink -f $0)/apis_common.sh
+
 STATE_OK=0
 STATE_WARNING=1
 STATE_CRITICAL=2
