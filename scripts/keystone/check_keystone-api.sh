@@ -23,7 +23,7 @@
 #
 set -e
 
-. ../$(readlink -f $0)/apis_common.sh
+. $(dirname $0)/../apis_common.sh
 
 STATE_OK=0
 STATE_WARNING=1
@@ -36,11 +36,12 @@ usage ()
     echo "Usage: $0 [OPTIONS]"
     echo " -h               Get help"
     echo " -H <Auth URL>    URL for obtaining an auth token. Ex : http://localhost:5000/v2.0"
+    echo " -T <project>     Project to use to get an auth token"
     echo " -U <username>    Username to use to get an auth token"
     echo " -P <password>    Password to use ro get an auth token"
 }
 
-while getopts 'hH:U:P:' OPTION
+while getopts 'hH:T:U:P:' OPTION
 do
     case $OPTION in
         h)
@@ -49,6 +50,9 @@ do
             ;;
         H)
             export OS_AUTH_URL=$OPTARG
+            ;;
+        T)
+            export OS_PROJECT_NAME=$OPTARG
             ;;
         U)
             export OS_USERNAME=$OPTARG
@@ -79,7 +83,8 @@ then
 fi
 
 START=`date +%s.%N`
-TOKEN=$(curl -X 'POST' ${OS_AUTH_URL}/tokens -d '{"auth":{"passwordCredentials":{"username": "'$OS_USERNAME'", "password":"'$OS_PASSWORD'"}}}' -H 'Content-type: application/json' 2>&1 | grep token|awk '{print $6}'|grep -o '".*"' | sed -n 's/.*"\([^"]*\)".*/\1/p')
+get_catalog
+get_token
 END=`date +%s.%N`
 TIME=`echo ${END} - ${START} | bc`
 

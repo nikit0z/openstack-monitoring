@@ -23,7 +23,7 @@
 #
 set -e
 
-. ../$(dirname $0)/apis_common.sh
+. $(dirname $0)/../apis_common.sh
 
 STATE_OK=0
 STATE_WARNING=1
@@ -37,7 +37,7 @@ usage ()
     echo " -h                   Get help"
     echo " -H <Auth URL>        URL for obtaining an auth token. Ex: http://localhost:5000/v2.0"
     echo " -E <Endpoint URL>    URL for nova API. Ex: http://localhost:8774/v2"
-    echo " -T <tenant>          Tenant to use to get an auth token"
+    echo " -T <project>         Project to use to get an auth token"
     echo " -U <username>        Username to use to get an auth token"
     echo " -P <password>        Password to use ro get an auth token"
 }
